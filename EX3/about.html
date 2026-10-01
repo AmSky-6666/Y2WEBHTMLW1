@@ -1,0 +1,60 @@
+<!-- Write your code here -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exchange Rates to US Dollar</title>
+</head>
+<body>
+<header>
+  <h1 align="center">CKH Money Exchange</h1>
+  <header align="center">
+        <p><a href="home.html">Home |</a>
+        <a href="about.html">About us |</a>
+        <a href="services.html">Services |</a>
+        <a href="contact.html">Contact </a>
+    </header>
+    <h1><p style="color: red; text-align: center;"> About us</h1>
+</header>
+<div class="row">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN3Gz_W4qwzwtgt_zG3enmCGC_5hFB78jndWN8lWJYUg&s=10" alt="Gold currency symbols on gears">
+
+  <div class="text" id="text">
+    <p>Hello! These are the exchange rates we use for payment. All rates are shown against the US dollar (USD).</p>
+  </div>
+</div>
+
+<script>
+// Edit this list. "perUSD" = how many of that currency equal 1 USD.
+var currencies = [
+  { name: "Cambodian Riel", code: "KHR", perUSD: 4000 },
+  { name: "Euro",           code: "EUR", perUSD: 0.92 },
+  { name: "British Pound",  code: "GBP", perUSD: 0.79 },
+  { name: "Japanese Yen",   code: "JPY", perUSD: 149.5 },
+  { name: "Thai Baht",      code: "THB", perUSD: 35.8 },
+  { name: "Vietnamese Dong",code: "VND", perUSD: 25300 },
+  { name: "Chinese Yuan",   code: "CNY", perUSD: 7.2 }
+];
+
+var amounts = [1, 5, 10];
+var box = document.getElementById("text");
+
+function fmt(n) {
+  return n.toLocaleString("en-US", { maximumFractionDigits: 2 });
+}
+
+currencies.forEach(function (c) {
+  var html = "<h2>" + c.name + " (" + c.code + ")</h2>" +
+             "<div>" + fmt(c.perUSD) + " " + c.code + " = 1 USD</div><ul>";
+  amounts.forEach(function (usd) {
+    html += "<li>$" + usd + " = " + fmt(usd * c.perUSD) + " " + c.code + "</li>";
+  });
+  html += "</ul>";
+  box.insertAdjacentHTML("beforeend", html);
+});
+
+box.insertAdjacentHTML("beforeend", "<p>Please let us know if you have any questions. Thank you!</p>");
+</script>
+</body>
+</html>

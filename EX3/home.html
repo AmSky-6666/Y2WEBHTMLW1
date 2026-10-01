@@ -1,0 +1,73 @@
+<!-- Write your code here -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CKH Money Exchange</title>
+</head>
+<body>
+
+<header>
+  <h1 align="center">CKH Money Exchange</h1>
+  <header align="center">
+        <p><a href="home.html">Home |</a>
+        <a href="about.html">About us |</a>
+        <a href="services.html">Services |</a>
+        <a href="contact.html">Contact </a>
+    </header>
+    <h1><p style="color: red; text-align: center;"> Home</h1>
+</header>
+
+<main>
+  <div class="box">
+    <h2>Convert money</h2>
+    <label for="amount">Amount</label>
+    <input id="amount" type="number" value="100" min="0">
+
+    <label for="from">From</label>
+    <select id="from"></select>
+
+    <label for="to">To</label>
+    <select id="to"></select>
+
+    <button id="go" type="button">Convert</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <div class="box" id="rates">
+    <h2>Today's rates (1 USD)</h2>
+    <table id="table"><tr><th>Currency</th><th>Rate</th></tr></table>
+  </div>
+</main>
+
+<footer id="contact">Questions? Email support@example.com</footer>
+
+<script>
+var rates = {USD:1, EUR:0.92, GBP:0.79, JPY:149.5, VND:25300, THB:35.8};
+
+var from = document.getElementById('from');
+var to = document.getElementById('to');
+var table = document.getElementById('table');
+
+for (var c in rates) {
+  from.add(new Option(c, c));
+  to.add(new Option(c, c));
+  if (c !== 'USD') {
+    var row = table.insertRow();
+    row.insertCell().textContent = c;
+    row.insertCell().textContent = rates[c];
+  }
+}
+from.value = 'USD';
+to.value = 'EUR';
+
+document.getElementById('go').onclick = function () {
+  var amount = parseFloat(document.getElementById('amount').value) || 0;
+  var value = amount / rates[from.value] * rates[to.value];
+  document.getElementById('result').textContent =
+    amount + ' ' + from.value + ' = ' + value.toFixed(2) + ' ' + to.value;
+};
+</script>
+</body>
+</html>
